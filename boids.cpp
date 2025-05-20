@@ -1,65 +1,119 @@
 #include "boids.hpp"
 
 #include <cmath>
+#include <numeric>
 #include <vector>
+
+#include "algorithm"
 
 namespace bd {
 
-Position Position::operator+=(Position& p) {};
-Position operator+(Position const& p1, Position const& p2) {
-  double a = p1.xp + p2.xp;
-  double b = p1.yp + p2.yp;
-  return Position{a, b};
+Coord& Coord::operator+=(const Coord& p) {
+  x += p.x;
+  y += p.y;
+  return *this;
 };
-Position operator-(Position const& p1, Position const& p2) {
-  double a = p1.xp - p2.xp;
-  double b = p1.yp - p2.yp;
-  return Position{a, b};
+Coord operator+(Coord const& c1, Coord const& c2) {
+  double a = c1.x + c2.x;
+  double b = c1.y + c2.y;
+  return Coord{a, b};
 };
-Velocity operator+(Velocity const& v1, Velocity const& v2) {
-  double a = v1.xv + v2.xv;
-  double b = v1.yv + v2.yv;
-  return Velocity{a, b};
+Coord operator-(Coord const& c1, Coord const& c2) {
+  double a = c1.x - c2.x;
+  double b = c1.y - c2.y;
+  return Coord{a, b};
 };
-Position operator*(Velocity const& v, double t) {
-  double a = v.xv * t;
-  double b = v.yv * t;
-  return Position{a, b};
+Coord operator*(Coord const& c, double t) {
+  double a = c.x * t;
+  double b = c.y * t;
+  return Coord{a, b};
 };
-bool operator>(Velocity const& v1, Velocity const& v2) {
-  double mv1 = sqrt(v1.xv * v1.xv + v1.yv * v1.yv);
-  double mv2 = sqrt(v2.xv * v2.xv + v2.yv * v2.yv);
-  return mv1 > mv2;
+bool operator>(Coord const& c1, Coord const& c2) {
+  double mc1 = sqrt(c1.x * c1.x + c1.y * c1.y);
+  double mc2 = sqrt(c2.x * c2.x + c2.y * c2.y);
+  return mc1 > mc2;
 };
 
-// swarm è la copia di flock
-double calculate_distance(Boid seagull, Boid parrot) {
-  Position p_seagull = seagull.getPosition();
-  Position p_parrot = parrot.getPosition();
+double calculate_distance(Boid s, Boid p) {
+  Coord pos_s = s.getPosition();
+  Coord pos_p = p.getPosition();
 
-  double distance =
-      sqrt((p_seagull.xp - p_parrot.xp) * (p_seagull.xp - p_parrot.xp) +
-           (p_seagull.yp - p_parrot.yp) * (p_seagull.yp - p_parrot.yp));
+  double distance = sqrt((pos_s.x - pos_p.x) * (pos_s.x - pos_p.x) +
+                         (pos_s.y - pos_p.y) * (pos_s.y - pos_p.y));
   return distance;
-}
+}  // da modificare il comportamento ai bordi
 
-std::vector<Boid> near_boids(std::vector<Boid> swarm, Boid crow, double ds) {
+std::vector<Boid> near_boids(std::vector<Boid> flock, Boid b, double d) {
   std::vector<Boid> near_boids{};
-  int n = swarm.size();
-  Position p_crow = crow.getPosition();
+  int n = flock.size();
+  Coord pos_b = b.getPosition();
   for (int i{}; i < n; ++i) {
-    Position p_swarm = swarm[i].getPosition();
-    double t = calculate_distance(crow, swarm[i]);
-    if (t < ds && t != 0) {
-      near_boids.push_back(swarm[i]);
+    Coord pos_flock = flock[i].getPosition();
+    double t = calculate_distance(b, flock[i]);
+    if (t < d && t != 0) {
+      near_boids.push_back(flock[i]);
     }
   }
   return near_boids;
 }
 
-Velocity separation(std::vector<Boid>, Boid, double s) {};
+Coord separation(std::vector<Boid> flock, Boid b, double s, double ds) {
+  std::vector<Boid> neighbours = near_boids(flock, b, ds);
+  int n = neighbours.size();
+  Coord sum_pos = std::accumulate(neighbours.begin(), neighbours.end(),
+                                  Coord{0., 0.}, [](Coord pos, Boid h) {
+                                    Coord pos_h = h.getPosition();
+                                    pos += pos_h;
+                                  });
+  Coord pos_b = b.getPosition();
+  Coord total_pos =
+      sum_pos - pos_b * n;  // formula ottenuta tramite calcoli sulla sommatoria
+  Coord v1 = total_pos * (-s);
+  return v1;
+};
 
-Velocity allignment(std::vector<Boid>, Boid){};
-Velocity cohesion(std::vector<Boid>, Boid){};
+Coord allignment(std::vector<Boid> flock, Boid b, double a) {
+  int n = flock.size();
+  Coord sum_vel = std::accumulate(flock.begin(), flock.end(), Coord{0., 0.},
+                                  [](Coord vel, Boid h) {
+                                    Coord vel_h = h.getVelocity();
+                                    vel += vel_h;
+                                  });
+  Coord vel_b = b.getVelocity();
+  Coord total_vel =
+      (sum_vel - vel_b * n) *
+      (1 / (n - 1));  // formula ottenuta tramite calcoli sulla sommatoria
+  Coord v2 = total_vel * a;
+  return v2;
+};
 
+Coord cohesion(std::vector<Boid> flock, Boid b, double c, double d) {
+  std::vector<Boid> neighbours = near_boids(flock, b, d);
+  int n = neighbours.size();
+  Coord sum_pos = std::accumulate(neighbours.begin(), neighbours.end(),
+                                  Coord{0., 0.}, [](Coord pos, Boid h) {
+                                    Coord pos_h = h.getPosition();
+                                    pos += pos_h;
+                                  });
+  Coord c_mass =
+      sum_pos * (1 / n);  // /n poichè near_boids non contiene il boid stesso
+  Coord pos_b = b.getPosition();
+  Coord v3 = (c_mass - pos_b) * c;
+  return v3;
+};
+
+Coord Velocity(std::vector<Boid> flock, Boid b, double s, double c, double d,
+               double ds, double a) {
+  Coord vel_b = b.getVelocity();
+  Coord v1 = separation(flock, b, s, ds);
+  Coord v2 = allignment(flock, b, a);
+  Coord v3 = cohesion(flock, b, c, d);
+  Coord v = vel_b + v1 + v2 + v3;
+  return v;
+};
+
+double mean_vel(std::vector<Boid> flock) {
+
+};
+double mean_pos(std::vector<Boid> flock) {};
 }  // namespace bd

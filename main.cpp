@@ -7,18 +7,18 @@ int main() {
   std::vector<bd::Boid> flock{};
   std::random_device r;
   std::default_random_engine eng{r()};
-  std::uniform_real_distribution<double> dist_xp{0., 10.};
-  std::uniform_real_distribution<double> dist_yp{0., 10.};
-  std::uniform_real_distribution<double> dist_xv{0., 10.};
-  std::uniform_real_distribution<double> dist_yv{0., 10.};
+  std::uniform_real_distribution<double> dist_pos_x{0., 10.};
+  std::uniform_real_distribution<double> dist_pos_y{0., 10.};
+  std::uniform_real_distribution<double> dist_vel_x{0., 10.};
+  std::uniform_real_distribution<double> dist_vel_y{0., 10.};
 
   int n;
   std::cin >> n;
   for (int i{0}; i != n; ++i) {
-    bd::Position pos{dist_xp(eng), dist_yp(eng)};
-    bd::Velocity vel{dist_xv(eng), dist_yv(eng)};
-    bd::Boid pigeon{pos, vel};
-    flock.push_back(pigeon);
+    bd::Coord pos{dist_pos_x(eng), dist_pos_y(eng)};
+    bd::Coord vel{dist_vel_x(eng), dist_vel_y(eng)};
+    bd::Boid pidgeon{pos, vel};
+    flock.push_back(pidgeon);
   };
 
   double distance;
@@ -33,11 +33,4 @@ int main() {
   // elimina copia di flock
   // estrapola info da flock'
 
-  if (distance < ds) {
-    bd::Velocity separation();
-  }
-  if (distance < d) {
-    bd::Velocity allignment();
-    bd::Velocity coesion();
-  }
 }

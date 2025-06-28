@@ -71,18 +71,20 @@ int main() {
     }
 
     std::vector<bd::Boid> new_b =
-        bd::new_boids(flock, sep, coe, dist, cr_dist, all, WIDTH, HEIGHT);
+        bd::new_boids(flock, sep, coe, dist, cr_dist, all, WIDTH, HEIGHT,
+                      MAX_SPEEDX, MAX_SPEEDY);
 
     window.clear(sf::Color::Black);
 
     for (auto& b : new_b) {
       bd::Coord p = b.getPosition();
       sf::Vector2f pos(static_cast<float>(p.x), static_cast<float>(p.y));
-
+      // Le nostre strutture non sono "disegnabili", quindi bisogna farle
+      // diventare "sf::Vector2f", che invece può essere disegnato da sfml
       shape.setPosition(pos);
       window.draw(shape);
     }
-    
+
     flock = std::move(new_b);
     window.display();
   }

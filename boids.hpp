@@ -8,9 +8,7 @@ struct Coord {
   double x;
   double y;
 
-  Coord& operator+=(
-      const Coord& p);  // se definita fuori dal tipo, un operatore
-                        // deve avere sempre due parametri
+  Coord& operator+=(const Coord& p);
 };
 
 Coord operator+(Coord const& p1, Coord const& p2);
@@ -29,14 +27,11 @@ class Boid {
   Coord getVelocity() const { return vel_; }
 };
 bool operator==(const Boid& lhs, const Boid& rhs);
-std::vector<Boid> near_boids(
-    const std::vector<Boid>& flock, const Boid& b,
-    double ds);  // funzione che preso un boid ti restituisce un vettore di
-                 // tutti i boid d vicini a lui
-// nel main andrà messa in un for che fa scorrere tutti i boid su cui usare
-// questa funzione
+std::vector<Boid> near_boids(const std::vector<Boid>& flock, const Boid& b,
+                             double ds);
 std::vector<Boid> new_boids(const std::vector<Boid>& flock, double s, double c,
-                            double d, double ds, double a,double width, double height);
+                            double d, double ds, double a, double width,
+                            double height, double maxspeedx, double maxspeedy);
 
 double calculate_distance(const Boid& s, const Boid& p);
 

@@ -139,22 +139,22 @@ Coord newPosition(const Boid& b, const Coord& v) {
 
 std::vector<Boid> new_boids(const std::vector<Boid>& flock, double s, double c,
                             double d, double ds, double a, double width,
-                            double height) {
+                            double height, double maxspeedx, double maxspeedy) {
   std::vector<Boid> new_boids{};
   std::size_t n = flock.size();
   for (std::size_t i{}; i < n; ++i) {
     Coord v = newVelocity(flock, flock[i], s, c, d, ds, a);
-    if (v.x > 3.) {
-      v.x = 3.;
+    if (v.x > maxspeedx) {
+      v.x = maxspeedx;
     }
-    if (v.y > 3.) {
-      v.y = 3.;
+    if (v.y > maxspeedy) {
+      v.y = maxspeedy;
     }
-    if (v.x < -3.) {
-      v.x = -3.;
+    if (v.x < -maxspeedx) {
+      v.x = -maxspeedx;
     }
-    if (v.y < -3.) {
-      v.y = -3.;
+    if (v.y < -maxspeedy) {
+      v.y = -maxspeedy;
     }
     Coord p = newPosition(flock[i], v);
     if (p.x < 0.) p.x += width;

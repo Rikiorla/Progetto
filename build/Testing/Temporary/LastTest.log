@@ -1,10 +1,10 @@
-Start testing: Jun 30 11:50 CEST
+Start testing: Jun 30 18:51 CEST
 ----------------------------------------------------------
 1/1 Testing: boids.t
 1/1 Test: boids.t
-Command: "/home/simone-napodano/Progetto/build/Debug/boids.t"
+Command: "/home/simone-napodano/Progetto/build/boids.t"
 Directory: /home/simone-napodano/Progetto/build
-"boids.t" start time: Jun 30 11:50 CEST
+"boids.t" start time: Jun 30 18:51 CEST
 Output:
 ----------------------------------------------------------
 [doctest] doctest version is "2.4.12"
@@ -14,11 +14,11 @@ Output:
 [doctest] assertions: 49 | 49 passed | 0 failed |
 [doctest] Status: SUCCESS!
 <end of output>
-Test time =   0.24 sec
+Test time =   0.27 sec
 ----------------------------------------------------------
 Test Passed.
-"boids.t" end time: Jun 30 11:50 CEST
+"boids.t" end time: Jun 30 18:51 CEST
 "boids.t" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Jun 30 11:50 CEST
+End testing: Jun 30 18:51 CEST

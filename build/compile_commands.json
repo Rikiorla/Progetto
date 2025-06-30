@@ -1,74 +1,26 @@
 [
 {
   "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"Debug\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -g -fsanitize=address,undefined -std=c++20 -o CMakeFiles/boids.dir/Debug/main.cpp.o -c /home/simone-napodano/Progetto/main.cpp",
+  "command": "/usr/bin/c++    -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -g -fsanitize=address,undefined -std=c++20 -o CMakeFiles/boids.dir/main.cpp.o -c /home/simone-napodano/Progetto/main.cpp",
   "file": "/home/simone-napodano/Progetto/main.cpp",
-  "output": "CMakeFiles/boids.dir/Debug/main.cpp.o"
+  "output": "CMakeFiles/boids.dir/main.cpp.o"
 },
 {
   "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"Debug\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -g -fsanitize=address,undefined -std=c++20 -o CMakeFiles/boids.dir/Debug/boids.cpp.o -c /home/simone-napodano/Progetto/boids.cpp",
+  "command": "/usr/bin/c++    -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -g -fsanitize=address,undefined -std=c++20 -o CMakeFiles/boids.dir/boids.cpp.o -c /home/simone-napodano/Progetto/boids.cpp",
   "file": "/home/simone-napodano/Progetto/boids.cpp",
-  "output": "CMakeFiles/boids.dir/Debug/boids.cpp.o"
+  "output": "CMakeFiles/boids.dir/boids.cpp.o"
 },
 {
   "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"Release\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O3 -DNDEBUG -std=c++20 -o CMakeFiles/boids.dir/Release/main.cpp.o -c /home/simone-napodano/Progetto/main.cpp",
-  "file": "/home/simone-napodano/Progetto/main.cpp",
-  "output": "CMakeFiles/boids.dir/Release/main.cpp.o"
-},
-{
-  "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"Release\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O3 -DNDEBUG -std=c++20 -o CMakeFiles/boids.dir/Release/boids.cpp.o -c /home/simone-napodano/Progetto/boids.cpp",
-  "file": "/home/simone-napodano/Progetto/boids.cpp",
-  "output": "CMakeFiles/boids.dir/Release/boids.cpp.o"
-},
-{
-  "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O2 -g -DNDEBUG -std=c++20 -o CMakeFiles/boids.dir/RelWithDebInfo/main.cpp.o -c /home/simone-napodano/Progetto/main.cpp",
-  "file": "/home/simone-napodano/Progetto/main.cpp",
-  "output": "CMakeFiles/boids.dir/RelWithDebInfo/main.cpp.o"
-},
-{
-  "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O2 -g -DNDEBUG -std=c++20 -o CMakeFiles/boids.dir/RelWithDebInfo/boids.cpp.o -c /home/simone-napodano/Progetto/boids.cpp",
-  "file": "/home/simone-napodano/Progetto/boids.cpp",
-  "output": "CMakeFiles/boids.dir/RelWithDebInfo/boids.cpp.o"
-},
-{
-  "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"Debug\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -g -fsanitize=address,undefined -std=c++20 -o CMakeFiles/boids.t.dir/Debug/boids.test.cpp.o -c /home/simone-napodano/Progetto/boids.test.cpp",
+  "command": "/usr/bin/c++    -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -g -fsanitize=address,undefined -std=c++20 -o CMakeFiles/boids.t.dir/boids.test.cpp.o -c /home/simone-napodano/Progetto/boids.test.cpp",
   "file": "/home/simone-napodano/Progetto/boids.test.cpp",
-  "output": "CMakeFiles/boids.t.dir/Debug/boids.test.cpp.o"
+  "output": "CMakeFiles/boids.t.dir/boids.test.cpp.o"
 },
 {
   "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"Debug\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -g -fsanitize=address,undefined -std=c++20 -o CMakeFiles/boids.t.dir/Debug/boids.cpp.o -c /home/simone-napodano/Progetto/boids.cpp",
+  "command": "/usr/bin/c++    -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -g -fsanitize=address,undefined -std=c++20 -o CMakeFiles/boids.t.dir/boids.cpp.o -c /home/simone-napodano/Progetto/boids.cpp",
   "file": "/home/simone-napodano/Progetto/boids.cpp",
-  "output": "CMakeFiles/boids.t.dir/Debug/boids.cpp.o"
-},
-{
-  "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"Release\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O3 -DNDEBUG -std=c++20 -o CMakeFiles/boids.t.dir/Release/boids.test.cpp.o -c /home/simone-napodano/Progetto/boids.test.cpp",
-  "file": "/home/simone-napodano/Progetto/boids.test.cpp",
-  "output": "CMakeFiles/boids.t.dir/Release/boids.test.cpp.o"
-},
-{
-  "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"Release\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O3 -DNDEBUG -std=c++20 -o CMakeFiles/boids.t.dir/Release/boids.cpp.o -c /home/simone-napodano/Progetto/boids.cpp",
-  "file": "/home/simone-napodano/Progetto/boids.cpp",
-  "output": "CMakeFiles/boids.t.dir/Release/boids.cpp.o"
-},
-{
-  "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O2 -g -DNDEBUG -std=c++20 -o CMakeFiles/boids.t.dir/RelWithDebInfo/boids.test.cpp.o -c /home/simone-napodano/Progetto/boids.test.cpp",
-  "file": "/home/simone-napodano/Progetto/boids.test.cpp",
-  "output": "CMakeFiles/boids.t.dir/RelWithDebInfo/boids.test.cpp.o"
-},
-{
-  "directory": "/home/simone-napodano/Progetto/build",
-  "command": "/usr/bin/c++ -DCMAKE_INTDIR=\\\"RelWithDebInfo\\\"  -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O2 -g -DNDEBUG -std=c++20 -o CMakeFiles/boids.t.dir/RelWithDebInfo/boids.cpp.o -c /home/simone-napodano/Progetto/boids.cpp",
-  "file": "/home/simone-napodano/Progetto/boids.cpp",
-  "output": "CMakeFiles/boids.t.dir/RelWithDebInfo/boids.cpp.o"
+  "output": "CMakeFiles/boids.t.dir/boids.cpp.o"
 }
 ]

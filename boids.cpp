@@ -188,16 +188,6 @@ double meandistance(const std::vector<Boid>& flock) {
                                     });
   return sum_dist / static_cast<double>(n);
 }
-double meanvelocity(const std::vector<Boid>& flock) {
-  std::size_t n = flock.size();
-  double vel = std::accumulate(flock.begin(), flock.end(), double{0.},
-                               [](double v, Boid h) {
-                                 double vel_h = calculate_velocity(h);
-                                 v += vel_h;
-                                 return v;
-                               });
-  return vel / static_cast<double>(n);
-}
 double meanboiddistancesquared(const std::vector<Boid>& flock, const Boid& b) {
   double sq_dis = (meanboiddistance(flock, b) * meanboiddistance(flock, b));
   return sq_dis;
@@ -211,7 +201,31 @@ double dev_stddistance(const std::vector<Boid>& flock) {
         return d;
       });
   return sqrt((static_cast<double>(n) * st_dev) -
-              (meandistance(flock) * meandistance(flock))) /
+              (meandistance(flock) * meandistance(flock) *
+               static_cast<double>(n) * static_cast<double>(n))) /
+         static_cast<double>(n);
+}
+double meanvelocity(const std::vector<Boid>& flock) {
+  std::size_t n = flock.size();
+  double vel = std::accumulate(flock.begin(), flock.end(), double{0.},
+                               [](double v, Boid h) {
+                                 double vel_h = calculate_velocity(h);
+                                 v += vel_h;
+                                 return v;
+                               });
+  return vel / static_cast<double>(n);
+}
+double dev_stdvelocity(const std::vector<Boid>& flock) {
+  std::size_t n = flock.size();
+  double st_dev = std::accumulate(flock.begin(), flock.end(), double{0.},
+                                  [&](double v, Boid h) {
+                                    double vel_h = calculate_velocity(h);
+                                    v += (vel_h * vel_h);
+                                    return v;
+                                  });
+  return sqrt((static_cast<double>(n) * st_dev) -
+              (meanvelocity(flock) * meanvelocity(flock) *
+               static_cast<double>(n) * static_cast<double>(n))) /
          static_cast<double>(n);
 }
 }  // namespace bd

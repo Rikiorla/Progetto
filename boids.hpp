@@ -42,10 +42,12 @@ Coord cohesion(const std::vector<Boid>& flock, const Boid& b, double c,
 Coord newVelocity(const std::vector<Boid>& flock, const Boid& b, double s,
                   double c, double d, double ds, double a);
 Coord newPosition(const Boid& b, const Coord& v);
-double meandistance (std::vector<Boid> flock);
-double dev_stddistance (std::vector<Boid> flock);
-double meanvelocity (std::vector<Boid> flock);
-double dev_stdvelocity(std::vector<Boid> flock);
+double meandistance(const std::vector<Boid>& flock);
+double meanboiddistance(const std::vector<Boid>& flock, const Boid& b);
+double meanboiddistancesquared(const std::vector<Boid>& flock, const Boid& b);
+double dev_stddistance(const std::vector<Boid>& flock);
+double meanvelocity(const std::vector<Boid>& flock);
+double dev_stdvelocity(const std::vector<Boid>& flock);
 
 }  // namespace bd
 

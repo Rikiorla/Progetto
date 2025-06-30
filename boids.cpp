@@ -168,29 +168,27 @@ std::vector<Boid> new_boids(const std::vector<Boid>& flock, double s, double c,
   }
   return new_boids;
 }
-
-double meandistance(std::vector<Boid> flock) {
+double meanboiddistance(const std::vector<Boid>& flock, const Boid& b) {
   std::size_t n = flock.size();
-  std::vector<double> dist_i{};
-  for (std::size_t i{}; i < n; ++i) {
-    std::vector<double> dist_j{};
-    for (std::size_t j{}; j < n; ++j) {
-      double d = calculate_distance(flock[i], flock[j]);
-      dist_j.push_back(d);
-    }
-    double j = std::accumulate(dist_j.begin(), dist_j.end(), double{0.});
-    double jdist = j / static_cast<double>(n);
-    dist_i.push_back(jdist);
-  }
-  double i = std::accumulate(dist_i.begin(), dist_i.end(), double{0.});
-  double meandist = i / static_cast<double>(n);
-  return meandist;
-}  // allora lei è maledetta ma sostanzialmente quello che ho fatto è questo:
-   // nel ciclo interno calcolo la distanza dal boid i a tutti i boid j del
-   // flock e le metto in un vettore. poi le sommo con accumulate e le medio.
-   // poi tutte queste medie le metto in un vettore e a loro volta le sommo con
-   // accumulate  e le medio.
-double meanvelocity(std::vector<Boid> flock) {
+  double sum_d = std::accumulate(flock.begin(), flock.end(), double{0.},
+                                 [&](double d, Boid h) {
+                                   double dist = calculate_distance(h, b);
+                                   d += dist;
+                                   return d;
+                                 });
+  return sum_d / static_cast<double>(n);
+}
+double meandistance(const std::vector<Boid>& flock) {
+  std::size_t n = flock.size();
+  double sum_dist = std::accumulate(flock.begin(), flock.end(), double{0.},
+                                    [&](double d, Boid h) {
+                                      double mbd = meanboiddistance(flock, h);
+                                      d += mbd;
+                                      return d;
+                                    });
+  return sum_dist / static_cast<double>(n);
+}
+double meanvelocity(const std::vector<Boid>& flock) {
   std::size_t n = flock.size();
   double vel = std::accumulate(flock.begin(), flock.end(), double{0.},
                                [](double v, Boid h) {
@@ -200,4 +198,21 @@ double meanvelocity(std::vector<Boid> flock) {
                                });
   return vel / static_cast<double>(n);
 }
+double meanboiddistancesquared(const std::vector<Boid>& flock, const Boid& b) {
+  double sq_dis = (meanboiddistance(flock, b) * meanboiddistance(flock, b));
+  return sq_dis;
+}
+double dev_stddistance(const std::vector<Boid>& flock) {
+  std::size_t n = flock.size();
+  double st_dev = std::accumulate(
+      flock.begin(), flock.end(), double{0.}, [&](double d, Boid h) {
+        double mbds = meanboiddistancesquared(flock, h);
+        d += mbds;
+        return d;
+      });
+  return sqrt((static_cast<double>(n) * st_dev) -
+              (meandistance(flock) * meandistance(flock))) /
+         static_cast<double>(n);
+}
 }  // namespace bd
+// namespace bd

@@ -39,14 +39,16 @@ bool operator==(const Boid& lhs, const Boid& rhs) {
   return lhs.getPosition() == rhs.getPosition() &&
          lhs.getVelocity() == rhs.getVelocity();
 }
-
+double calculate_velocity(const Boid& s) {
+  Coord v = s.getVelocity();
+  return sqrt((v.x * v.x) + (v.y * v.y));
+}
 double calculate_distance(const Boid& s, const Boid& p) {
   Coord pos_s = s.getPosition();
   Coord pos_p = p.getPosition();
 
-  double distance = sqrt((pos_s.x - pos_p.x) * (pos_s.x - pos_p.x) +
-                         (pos_s.y - pos_p.y) * (pos_s.y - pos_p.y));
-  return distance;
+  return sqrt((pos_s.x - pos_p.x) * (pos_s.x - pos_p.x) +
+              (pos_s.y - pos_p.y) * (pos_s.y - pos_p.y));
 }
 
 std::vector<Boid> near_boids(const std::vector<Boid>& flock, const Boid& b,
@@ -165,5 +167,37 @@ std::vector<Boid> new_boids(const std::vector<Boid>& flock, double s, double c,
     new_boids.emplace_back(p, v);
   }
   return new_boids;
+}
+
+double meandistance(std::vector<Boid> flock) {
+  std::size_t n = flock.size();
+  std::vector<double> dist_i{};
+  for (std::size_t i{}; i < n; ++i) {
+    std::vector<double> dist_j{};
+    for (std::size_t j{}; j < n; ++j) {
+      double d = calculate_distance(flock[i], flock[j]);
+      dist_j.push_back(d);
+    }
+    double j = std::accumulate(dist_j.begin(), dist_j.end(), double{0.});
+    double jdist = j / static_cast<double>(n);
+    dist_i.push_back(jdist);
+  }
+  double i = std::accumulate(dist_i.begin(), dist_i.end(), double{0.});
+  double meandist = i / static_cast<double>(n);
+  return meandist;
+}  // allora lei è maledetta ma sostanzialmente quello che ho fatto è questo:
+   // nel ciclo interno calcolo la distanza dal boid i a tutti i boid j del
+   // flock e le metto in un vettore. poi le sommo con accumulate e le medio.
+   // poi tutte queste medie le metto in un vettore e a loro volta le sommo con
+   // accumulate  e le medio.
+double meanvelocity(std::vector<Boid> flock) {
+  std::size_t n = flock.size();
+  double vel = std::accumulate(flock.begin(), flock.end(), double{0.},
+                               [](double v, Boid h) {
+                                 double vel_h = calculate_velocity(h);
+                                 v += vel_h;
+                                 return v;
+                               });
+  return vel / static_cast<double>(n);
 }
 }  // namespace bd

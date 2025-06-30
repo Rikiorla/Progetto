@@ -200,10 +200,8 @@ double dev_stddistance(const std::vector<Boid>& flock) {
         d += mbds;
         return d;
       });
-  return sqrt((static_cast<double>(n) * st_dev) -
-              (meandistance(flock) * meandistance(flock) *
-               static_cast<double>(n) * static_cast<double>(n))) /
-         static_cast<double>(n);
+  return sqrt((st_dev / static_cast<double>(n)) -
+              (meandistance(flock) * meandistance(flock)));
 }
 double meanvelocity(const std::vector<Boid>& flock) {
   std::size_t n = flock.size();
@@ -223,10 +221,8 @@ double dev_stdvelocity(const std::vector<Boid>& flock) {
                                     v += (vel_h * vel_h);
                                     return v;
                                   });
-  return sqrt((static_cast<double>(n) * st_dev) -
-              (meanvelocity(flock) * meanvelocity(flock) *
-               static_cast<double>(n) * static_cast<double>(n))) /
-         static_cast<double>(n);
+  return sqrt((st_dev / static_cast<double>(n)) -
+              (meanvelocity(flock) * meanvelocity(flock)));
 }
 }  // namespace bd
 // namespace bd

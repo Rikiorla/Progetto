@@ -1,10 +1,10 @@
-Start testing: Jun 28 15:55 CEST
+Start testing: Jun 30 11:50 CEST
 ----------------------------------------------------------
-1/1 Testing: progetto.t
-1/1 Test: progetto.t
-Command: "/home/simone-napodano/progetto_boids/build/Debug/progetto.t"
-Directory: /home/simone-napodano/progetto_boids/build
-"progetto.t" start time: Jun 28 15:55 CEST
+1/1 Testing: boids.t
+1/1 Test: boids.t
+Command: "/home/simone-napodano/Progetto/build/Debug/boids.t"
+Directory: /home/simone-napodano/Progetto/build
+"boids.t" start time: Jun 30 11:50 CEST
 Output:
 ----------------------------------------------------------
 [doctest] doctest version is "2.4.12"
@@ -14,11 +14,11 @@ Output:
 [doctest] assertions: 49 | 49 passed | 0 failed |
 [doctest] Status: SUCCESS!
 <end of output>
-Test time =   0.09 sec
+Test time =   0.24 sec
 ----------------------------------------------------------
 Test Passed.
-"progetto.t" end time: Jun 28 15:55 CEST
-"progetto.t" time elapsed: 00:00:00
+"boids.t" end time: Jun 30 11:50 CEST
+"boids.t" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Jun 28 15:55 CEST
+End testing: Jun 30 11:50 CEST

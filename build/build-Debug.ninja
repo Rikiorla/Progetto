@@ -64,13 +64,13 @@ build NightlyTest: phony NightlyTest$:Debug
 
 build NightlyUpdate: phony NightlyUpdate$:Debug
 
-build progetto: phony Debug/progetto
+build boids: phony Debug/boids
 
-build progetto.t: phony Debug/progetto.t
+build boids.t: phony Debug/boids.t
 
 
 #############################################
-# Folder: /home/simone-napodano/progetto_boids/build
+# Folder: /home/simone-napodano/Progetto/build
 
 build all: phony all$:Debug
 

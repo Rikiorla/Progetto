@@ -64,13 +64,13 @@ build NightlyTest: phony NightlyTest$:RelWithDebInfo
 
 build NightlyUpdate: phony NightlyUpdate$:RelWithDebInfo
 
-build progetto: phony RelWithDebInfo/progetto
+build boids: phony RelWithDebInfo/boids
 
-build progetto.t: phony RelWithDebInfo/progetto.t
+build boids.t: phony RelWithDebInfo/boids.t
 
 
 #############################################
-# Folder: /home/simone-napodano/progetto_boids/build
+# Folder: /home/simone-napodano/Progetto/build
 
 build all: phony all$:RelWithDebInfo
 

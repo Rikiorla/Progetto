@@ -64,13 +64,13 @@ build NightlyTest: phony NightlyTest$:Release
 
 build NightlyUpdate: phony NightlyUpdate$:Release
 
-build progetto: phony Release/progetto
+build boids: phony Release/boids
 
-build progetto.t: phony Release/progetto.t
+build boids.t: phony Release/boids.t
 
 
 #############################################
-# Folder: /home/simone-napodano/progetto_boids/build
+# Folder: /home/simone-napodano/Progetto/build
 
 build all: phony all$:Release
 

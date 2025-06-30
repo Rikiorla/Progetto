@@ -39,6 +39,8 @@ TEST_CASE("Test new_boids with multiple boids and wrapping") {
   double a = 0.1;
   double width = 100.0;
   double height = 100.0;
+  double MAX_SPEEDX = 3.;
+  double MAX_SPEEDY = 3.;
 
   std::vector<Boid> flock{
       Boid({10.0, 50.0}, {1.0, 0.0}), Boid({20.0, 50.0}, {1.0, 0.5}),
@@ -46,7 +48,7 @@ TEST_CASE("Test new_boids with multiple boids and wrapping") {
       Boid({99.9, 50.0}, {5.0, 0.0})  // vicino al bordo
   };
 
-  auto updated = bd::new_boids(flock, s, c, d, ds, a, width, height);
+  auto updated = bd::new_boids(flock, s, c, d, ds, a, width, height, MAX_SPEEDX, MAX_SPEEDY);
 
   REQUIRE(updated.size() == flock.size());
 

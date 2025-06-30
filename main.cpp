@@ -1,8 +1,9 @@
-
 #include <SFML/Graphics.hpp>
 #include <cassert>
 #include <iostream>
 #include <random>
+#include <sstream>      // Per stringstream
+#include <iomanip>      // Per setprecision
 
 #include "boids.hpp"
 
@@ -10,12 +11,11 @@ const float WIDTH = 800;
 const float HEIGHT = 600;
 const float MAX_SPEEDX = 3.;
 const float MAX_SPEEDY = 3.;
+
 int main() {
-  std::cout
-      << "Hi, please insert the number of boids you want in your flock \n";
+  std::cout << "Hi, please insert the number of boids you want in your flock \n";
 
   int Num_boids;
-
   std::cin >> Num_boids;
   assert(!std::cin.fail());
   if (Num_boids < 2) {
@@ -46,6 +46,20 @@ int main() {
   sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Boids SFML");
   window.setFramerateLimit(60);
 
+  // Caricamento font
+  sf::Font font;
+  if (!font.loadFromFile("OpenSans-Regular.ttf")) {
+    std::cerr << "Errore nel caricamento del font\n";
+    return -1;
+  }
+
+  sf::Text infoText;
+  infoText.setFont(font);
+  infoText.setCharacterSize(16);
+  infoText.setFillColor(sf::Color::White);
+  infoText.setStyle(sf::Text::Regular);
+  infoText.setPosition(WIDTH - 250.f, 10.f);
+
   std::vector<bd::Boid> flock{};
   std::random_device r;
   std::default_random_engine eng{r()};
@@ -67,7 +81,8 @@ int main() {
   while (window.isOpen()) {
     sf::Event event;
     while (window.pollEvent(event)) {
-      if (event.type == sf::Event::Closed) window.close();
+      if (event.type == sf::Event::Closed)
+        window.close();
     }
 
     std::vector<bd::Boid> new_b =
@@ -76,17 +91,36 @@ int main() {
 
     window.clear(sf::Color::Black);
 
+    // Disegna boids
     for (auto& b : new_b) {
       bd::Coord p = b.getPosition();
       sf::Vector2f pos(static_cast<float>(p.x), static_cast<float>(p.y));
-      // Le nostre strutture non sono "disegnabili", quindi bisogna farle
-      // diventare "sf::Vector2f", che invece può essere disegnato da sfml
       shape.setPosition(pos);
       window.draw(shape);
     }
 
-    flock = std::move(new_b);
+    // Calcola i valori da mostrare
+    double meanDist = bd::meandistance(new_b);
+    double stdDist = bd::dev_stddistance(new_b);
+    double meanVel = bd::meanvelocity(new_b);
+    double stdVel = bd::dev_stdvelocity(new_b);
+
+    // Formatta i valori con 2 cifre decimali
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(2);
+    ss << "Mean Distance: " << meanDist << "\n";
+    ss << "Std Dev Dist: " << stdDist << "\n";
+    ss << "Mean Velocity: " << meanVel << "\n";
+    ss << "Std Dev Vel: " << stdVel;
+
+    infoText.setString(ss.str());
+
+    // Disegna testo (dopo i boids)
+    window.draw(infoText);
+
     window.display();
+
+    flock = std::move(new_b);
   }
   return 0;
 }

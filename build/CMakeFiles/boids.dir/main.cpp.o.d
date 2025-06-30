@@ -270,5 +270,7 @@ CMakeFiles/boids.dir/main.cpp.o: /home/simone-napodano/Progetto/main.cpp \
  /usr/include/x86_64-linux-gnu/c++/13/bits/opt_random.h \
  /usr/include/c++/13/bits/random.tcc /usr/include/c++/13/numeric \
  /usr/include/c++/13/bits/stl_numeric.h \
- /usr/include/c++/13/pstl/glue_numeric_defs.h \
+ /usr/include/c++/13/pstl/glue_numeric_defs.h /usr/include/c++/13/sstream \
+ /usr/include/c++/13/bits/sstream.tcc /usr/include/c++/13/iomanip \
+ /usr/include/c++/13/bits/quoted_string.h \
  /home/simone-napodano/Progetto/boids.hpp

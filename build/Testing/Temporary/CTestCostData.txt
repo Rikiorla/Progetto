@@ -1,3 +1,3 @@
-progetto.t 5 0.0184623
-boids.t 2 0.133562
+boids.t 0 0
 ---
+boids.t

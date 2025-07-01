@@ -135,7 +135,7 @@ Coord newVelocity(const std::vector<Boid>& flock, const Boid& b, double s,
 
 Coord newPosition(const Boid& b, const Coord& v) {
   const Coord pos_b = b.getPosition();
-  const Coord newpos = pos_b + (v * (1. / 60));
+  const Coord newpos = pos_b + (v * (1. / 30));
   return newpos;
 }
 

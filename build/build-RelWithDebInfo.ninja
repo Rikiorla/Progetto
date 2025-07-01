@@ -70,7 +70,7 @@ build boids.t: phony RelWithDebInfo/boids.t
 
 
 #############################################
-# Folder: /home/simone-napodano/Progetto/build
+# Folder: /home/mnegri/cantiere/build
 
 build all: phony all$:RelWithDebInfo
 

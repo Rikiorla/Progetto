@@ -122,13 +122,25 @@ Coord cohesion(const std::vector<Boid>& flock, const Boid& b, double c,
   const Coord v3 = (c_mass - pos_b) * c;
   return v3;
 }
-Coord newVelocity(const std::vector<Boid>& flock, const Boid& b, double s,
-                  double c, double d, double ds, double a) {
+Coord predatorseparation(const Boid& b, const Boid& pr, double ds, double s) {
+  if (calculate_distance(b, pr) > ds) {
+    return Coord{0., 0.};
+  } else {
+    Coord bpos = b.getPosition();
+    Coord prpos = pr.getPosition();
+
+    Coord v4 = (bpos - prpos) * (-s);
+    return v4;
+  }
+}
+Coord newVelocity(const std::vector<Boid>& flock, const Boid& b, const Boid& pr,
+                  double s, double c, double d, double ds, double a) {
   const Coord vel_b = b.getVelocity();
   const Coord v1 = separation(flock, b, s, ds);
   const Coord v2 = allignment(flock, b, a);
   const Coord v3 = cohesion(flock, b, c, d);
-  const Coord v = vel_b + v1 + v2 + v3;
+  const Coord v4 = predatorseparation(b, pr, ds, s);
+  const Coord v = vel_b + v1 + v2 + v3 + (v4 * 5);
   return v;
 }
 
@@ -138,13 +150,15 @@ Coord newPosition(const Boid& b, const Coord& v) {
   return newpos;
 }
 
-std::vector<Boid> new_boids(const std::vector<Boid>& flock, double s, double c,
-                            double d, double ds, double a, double width,
-                            double height, double maxspeedx, double maxspeedy) {
+std::vector<Boid> new_boids(const std::vector<Boid>& flock, const Boid& pr,
+                            double s, double c, double d, double ds, double a,
+                            double width, double height, double maxspeedx,
+                            double maxspeedy) {
   std::vector<Boid> new_boids{};
   std::size_t n = flock.size();
   for (std::size_t i{}; i < n; ++i) {
-    Coord v = newVelocity(flock, flock[i], s, c, d, ds, a);
+    Coord v = newVelocity(flock, flock[i], pr, s, c, d, ds, a);
+
     if (v.x > maxspeedx) {
       v.x = maxspeedx;
     }
@@ -227,5 +241,50 @@ double dev_stdvelocity(const std::vector<Boid>& flock) {
   return sqrt((st_dev / static_cast<double>(n)) -
               (meanvelocity(flock) * meanvelocity(flock)));
 }
+Coord newpredatorvelocity(const Boid& pr, const std::vector<Boid> flock,
+                          double d, double c) {
+  Coord v1 = cohesion(flock, pr, c, d);
+  std::size_t n = flock.size();
+  Coord vpr = pr.getVelocity();
+  if (n == 0) {
+    return vpr + v1;
+  } else {
+    Boid min = *std::min_element(
+        flock.begin(), flock.end(), [&](const Boid& h, const Boid& i) {
+          return calculate_distance(h, pr) < calculate_distance(i, pr);
+        });
+
+    Coord vmin = min.getVelocity();
+    Coord v2 = (vpr - vmin) * 2.;
+    Coord v = vpr + v1 + v2;
+    return v;
+  }
+}
+Boid newpredator(const Boid& pr, const std::vector<Boid> flock, double d,
+                 double c, double width, double height, double maxspeedx,
+                 double maxspeedy) {
+  Coord vp = newpredatorvelocity(pr, flock, d, c);
+  if (vp.x > maxspeedx) {
+    vp.x = maxspeedx;
+  }
+  if (vp.y > maxspeedy) {
+    vp.y = maxspeedy;
+  }
+  if (vp.x < -maxspeedx) {
+    vp.x = -maxspeedx;
+  }
+  if (vp.y < -maxspeedy) {
+    vp.y = -maxspeedy;
+  }
+  Coord p = newPosition(pr, vp);
+  if (p.x < 0.) p.x += width;
+  if (p.x > width) p.x -= width;
+  if (p.y < 0.) p.y += height;
+  if (p.y > height) p.y -= height;
+  Boid new_p = {p, vp};
+  return new_p;
+}
+
 }  // namespace bd
+   // namespace bd
 // namespace bd

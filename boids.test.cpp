@@ -47,9 +47,9 @@ TEST_CASE("Test new_boids with multiple boids and wrapping") {
       Boid({30.0, 50.0}, {1.0, -0.5}),
       Boid({99.9, 50.0}, {5.0, 0.0})  // vicino al bordo
   };
-
-  auto updated = bd::new_boids(flock, s, c, d, ds, a, width, height, MAX_SPEEDX,
-                               MAX_SPEEDY);
+  Boid pr{{0., 0.}, {0., 0.}};
+  auto updated = bd::new_boids(flock, pr, s, c, d, ds, a, width, height,
+                               MAX_SPEEDX, MAX_SPEEDY);
 
   REQUIRE(updated.size() == flock.size());
 
@@ -132,5 +132,5 @@ TEST_CASE("testing mean velocities and positions") {
   double d = bd::meandistance(flock);
   double v = bd::meanvelocity(flock);
   CHECK(d == doctest::Approx(5));
-  CHECK(v == doctest::Approx(9));                    
+  CHECK(v == doctest::Approx(9));
 }

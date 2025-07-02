@@ -91,14 +91,20 @@ int main() {
     std::random_device r;
     std::default_random_engine eng{r()};
     std::uniform_real_distribution<double> dist_pos_x{0., 800.};
-    std::uniform_real_distribution<double> dist_pos_y{0., 600.};  
+    std::uniform_real_distribution<double> dist_pos_y{0., 600.};
     std::uniform_real_distribution<double> dist_vel_x_1{-200., -100.};
     std::uniform_real_distribution<double> dist_vel_x_2{100., 200.};
     std::uniform_real_distribution<double> dist_vel_y_1{-200., -100.};
     std::uniform_real_distribution<double> dist_vel_y_2{100., 200.};
     std::uniform_int_distribution<int> choose_interval(0, 1);
 
-
+    bd::Coord ppos{dist_pos_x(eng), dist_pos_y(eng)};
+    double vpx =
+        (choose_interval(eng) == 0) ? dist_vel_x_1(eng) : dist_vel_x_2(eng);
+    double vpy =
+        (choose_interval(eng) == 0) ? dist_vel_y_1(eng) : dist_vel_y_2(eng);
+    bd::Coord pvel{vpx, vpy};
+    bd::Boid pr{ppos, pvel};
 
     for (int i{0}; i != Num_boids; ++i) {
       bd::Coord pos{dist_pos_x(eng), dist_pos_y(eng)};
@@ -110,9 +116,13 @@ int main() {
       flock.emplace_back(pos, vel);
     }
 
-    sf::CircleShape shape(3);
-    shape.setFillColor(sf::Color::White);
-    shape.setOrigin(3, 3);
+    sf::CircleShape shape1(3);
+    shape1.setFillColor(sf::Color::White);
+    shape1.setOrigin(3, 3);
+
+    sf::CircleShape shape2(3);
+    shape2.setFillColor(sf::Color::Red);
+    shape2.setOrigin(3, 3);
 
     while (window.isOpen()) {
       sf::Event event;
@@ -121,18 +131,25 @@ int main() {
       }
 
       std::vector<bd::Boid> new_b =
-          bd::new_boids(flock, sep, coe, dist, cr_dist, all, WIDTH, HEIGHT,
+          bd::new_boids(flock, pr, sep, coe, dist, cr_dist, all, WIDTH, HEIGHT,
                         MAX_SPEEDX, MAX_SPEEDY);
-
+      bd::Boid new_pr = bd::newpredator(pr, flock, dist, coe, WIDTH, HEIGHT,
+                                        MAX_SPEEDX, MAX_SPEEDY);
       window.clear(sf::Color::Black);
 
       // Disegna boids
       for (auto& b : new_b) {
         bd::Coord p = b.getPosition();
         sf::Vector2f pos(static_cast<float>(p.x), static_cast<float>(p.y));
-        shape.setPosition(pos);
-        window.draw(shape);
+        shape1.setPosition(pos);
+        window.draw(shape1);
       }
+      // disegna predator
+      bd::Coord pr_pos = new_pr.getPosition();
+      sf::Vector2f p_pos(static_cast<float>(pr_pos.x),
+                         static_cast<float>(pr_pos.y));
+      shape2.setPosition(p_pos);
+      window.draw(shape2);
 
       // Calcola i valori da mostrare
       double meanDist = bd::meandistance(new_b);
@@ -156,6 +173,7 @@ int main() {
       window.display();
 
       flock = std::move(new_b);
+      pr = std::move(new_pr);
     }
     return 0;
   } catch (std::exception const& e) {

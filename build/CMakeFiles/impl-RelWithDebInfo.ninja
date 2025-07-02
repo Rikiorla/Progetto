@@ -217,6 +217,8 @@ build CMakeFiles/boids.dir/RelWithDebInfo/main.cpp.o: CXX_COMPILER__boids_unscan
   FLAGS = -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O2 -g -DNDEBUG -std=c++20
   OBJECT_DIR = CMakeFiles/boids.dir/RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles/boids.dir/RelWithDebInfo
+  TARGET_COMPILE_PDB = CMakeFiles/boids.dir/RelWithDebInfo/
+  TARGET_PDB = RelWithDebInfo/boids.pdb
 
 build CMakeFiles/boids.dir/RelWithDebInfo/boids.cpp.o: CXX_COMPILER__boids_unscanned_RelWithDebInfo /home/mnegri/cantiere/boids.cpp || cmake_object_order_depends_target_boids_RELWITHDEBINFO
   DEFINES = -DCMAKE_INTDIR=\"RelWithDebInfo\"
@@ -224,6 +226,8 @@ build CMakeFiles/boids.dir/RelWithDebInfo/boids.cpp.o: CXX_COMPILER__boids_unsca
   FLAGS = -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O2 -g -DNDEBUG -std=c++20
   OBJECT_DIR = CMakeFiles/boids.dir/RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles/boids.dir/RelWithDebInfo
+  TARGET_COMPILE_PDB = CMakeFiles/boids.dir/RelWithDebInfo/
+  TARGET_PDB = RelWithDebInfo/boids.pdb
 
 
 # =============================================================================
@@ -239,8 +243,9 @@ build RelWithDebInfo/boids: CXX_EXECUTABLE_LINKER__boids_RelWithDebInfo CMakeFil
   OBJECT_DIR = CMakeFiles/boids.dir/RelWithDebInfo
   POST_BUILD = :
   PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/boids.dir/RelWithDebInfo/
   TARGET_FILE = RelWithDebInfo/boids
-  TARGET_PDB = boids.dbg
+  TARGET_PDB = RelWithDebInfo/boids.pdb
 
 # =============================================================================
 # Object build statements for EXECUTABLE target boids.t
@@ -257,6 +262,8 @@ build CMakeFiles/boids.t.dir/RelWithDebInfo/boids.test.cpp.o: CXX_COMPILER__boid
   FLAGS = -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O2 -g -DNDEBUG -std=c++20
   OBJECT_DIR = CMakeFiles/boids.t.dir/RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles/boids.t.dir/RelWithDebInfo
+  TARGET_COMPILE_PDB = CMakeFiles/boids.t.dir/RelWithDebInfo/
+  TARGET_PDB = RelWithDebInfo/boids.t.pdb
 
 build CMakeFiles/boids.t.dir/RelWithDebInfo/boids.cpp.o: CXX_COMPILER__boids.2et_unscanned_RelWithDebInfo /home/mnegri/cantiere/boids.cpp || cmake_object_order_depends_target_boids.t_RELWITHDEBINFO
   DEFINES = -DCMAKE_INTDIR=\"RelWithDebInfo\"
@@ -264,6 +271,8 @@ build CMakeFiles/boids.t.dir/RelWithDebInfo/boids.cpp.o: CXX_COMPILER__boids.2et
   FLAGS = -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O2 -g -DNDEBUG -std=c++20
   OBJECT_DIR = CMakeFiles/boids.t.dir/RelWithDebInfo
   OBJECT_FILE_DIR = CMakeFiles/boids.t.dir/RelWithDebInfo
+  TARGET_COMPILE_PDB = CMakeFiles/boids.t.dir/RelWithDebInfo/
+  TARGET_PDB = RelWithDebInfo/boids.t.pdb
 
 
 # =============================================================================
@@ -278,8 +287,9 @@ build RelWithDebInfo/boids.t: CXX_EXECUTABLE_LINKER__boids.2et_RelWithDebInfo CM
   OBJECT_DIR = CMakeFiles/boids.t.dir/RelWithDebInfo
   POST_BUILD = :
   PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/boids.t.dir/RelWithDebInfo/
   TARGET_FILE = RelWithDebInfo/boids.t
-  TARGET_PDB = boids.t.dbg
+  TARGET_PDB = RelWithDebInfo/boids.t.pdb
 
 
 #############################################

@@ -134,3 +134,28 @@ TEST_CASE("testing mean velocities and positions") {
   CHECK(d == doctest::Approx(5));
   CHECK(v == doctest::Approx(9));
 }
+TEST_CASE("testing predator separetion") {
+  using bd::Boid;
+  using bd::Coord;
+  SUBCASE("testing d < ds") {
+    Boid b{Coord{10, 10}, Coord{1, -2}};
+    Boid pr{Coord{12, 12}, Coord{5, 0}};
+    double ds{3};
+    double s{0.8};
+
+    Coord v = bd::predatorseparation(b, pr, ds, s);
+    CHECK(v.x == doctest::Approx(-1.6));
+    CHECK(v.y == doctest::Approx(-1.6));
+  }
+
+  SUBCASE("testing d > ds") {
+    Boid b{Coord{1, 6}, Coord{0, 3}};
+    Boid pr{Coord{4, 2}, Coord{-5, 4}};
+    double ds{3};
+    double s{0.3};
+
+    Coord v = bd::predatorseparation(b, pr, ds, s);
+    CHECK(v.x == 0.);
+    CHECK(v.y == 0.);
+  }
+}

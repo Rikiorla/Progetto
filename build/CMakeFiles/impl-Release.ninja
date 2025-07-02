@@ -217,6 +217,8 @@ build CMakeFiles/boids.dir/Release/main.cpp.o: CXX_COMPILER__boids_unscanned_Rel
   FLAGS = -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O3 -DNDEBUG -std=c++20
   OBJECT_DIR = CMakeFiles/boids.dir/Release
   OBJECT_FILE_DIR = CMakeFiles/boids.dir/Release
+  TARGET_COMPILE_PDB = CMakeFiles/boids.dir/Release/
+  TARGET_PDB = Release/boids.pdb
 
 build CMakeFiles/boids.dir/Release/boids.cpp.o: CXX_COMPILER__boids_unscanned_Release /home/mnegri/cantiere/boids.cpp || cmake_object_order_depends_target_boids_RELEASE
   DEFINES = -DCMAKE_INTDIR=\"Release\"
@@ -224,6 +226,8 @@ build CMakeFiles/boids.dir/Release/boids.cpp.o: CXX_COMPILER__boids_unscanned_Re
   FLAGS = -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O3 -DNDEBUG -std=c++20
   OBJECT_DIR = CMakeFiles/boids.dir/Release
   OBJECT_FILE_DIR = CMakeFiles/boids.dir/Release
+  TARGET_COMPILE_PDB = CMakeFiles/boids.dir/Release/
+  TARGET_PDB = Release/boids.pdb
 
 
 # =============================================================================
@@ -239,8 +243,9 @@ build Release/boids: CXX_EXECUTABLE_LINKER__boids_Release CMakeFiles/boids.dir/R
   OBJECT_DIR = CMakeFiles/boids.dir/Release
   POST_BUILD = :
   PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/boids.dir/Release/
   TARGET_FILE = Release/boids
-  TARGET_PDB = boids.dbg
+  TARGET_PDB = Release/boids.pdb
 
 # =============================================================================
 # Object build statements for EXECUTABLE target boids.t
@@ -257,6 +262,8 @@ build CMakeFiles/boids.t.dir/Release/boids.test.cpp.o: CXX_COMPILER__boids.2et_u
   FLAGS = -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O3 -DNDEBUG -std=c++20
   OBJECT_DIR = CMakeFiles/boids.t.dir/Release
   OBJECT_FILE_DIR = CMakeFiles/boids.t.dir/Release
+  TARGET_COMPILE_PDB = CMakeFiles/boids.t.dir/Release/
+  TARGET_PDB = Release/boids.t.pdb
 
 build CMakeFiles/boids.t.dir/Release/boids.cpp.o: CXX_COMPILER__boids.2et_unscanned_Release /home/mnegri/cantiere/boids.cpp || cmake_object_order_depends_target_boids.t_RELEASE
   DEFINES = -DCMAKE_INTDIR=\"Release\"
@@ -264,6 +271,8 @@ build CMakeFiles/boids.t.dir/Release/boids.cpp.o: CXX_COMPILER__boids.2et_unscan
   FLAGS = -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wimplicit-fallthrough -Wextra-semi -Wold-style-cast -fno-omit-frame-pointer -D_GLIBCXX_ASSERTIONS -D_GLIBCXX_SANITIZE_STD_ALLOCATOR -O3 -DNDEBUG -std=c++20
   OBJECT_DIR = CMakeFiles/boids.t.dir/Release
   OBJECT_FILE_DIR = CMakeFiles/boids.t.dir/Release
+  TARGET_COMPILE_PDB = CMakeFiles/boids.t.dir/Release/
+  TARGET_PDB = Release/boids.t.pdb
 
 
 # =============================================================================
@@ -278,8 +287,9 @@ build Release/boids.t: CXX_EXECUTABLE_LINKER__boids.2et_Release CMakeFiles/boids
   OBJECT_DIR = CMakeFiles/boids.t.dir/Release
   POST_BUILD = :
   PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/boids.t.dir/Release/
   TARGET_FILE = Release/boids.t
-  TARGET_PDB = boids.t.dbg
+  TARGET_PDB = Release/boids.t.pdb
 
 
 #############################################

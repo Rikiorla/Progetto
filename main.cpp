@@ -11,6 +11,8 @@ const float WIDTH = 800;
 const float HEIGHT = 600;
 const float MAX_SPEEDX = 250.;
 const float MAX_SPEEDY = 250.;
+const float MAX_SPEEDPX = 150.;
+const float MAX_SPEEDPY = 150.;
 
 int main() {
   try {
@@ -23,7 +25,7 @@ int main() {
       throw std::runtime_error{"Input error: invalid character"};
     }
     if (Num_boids < 2) {
-      throw std::runtime_error{"the flock is formed by at least two boids"};
+      throw std::runtime_error{"The flock is formed by at least two boids"};
     }
     float dist;
     float cr_dist;
@@ -31,17 +33,17 @@ int main() {
     float all;
     float coe;
     std::cout << "Thank you, now please insert flight parameters: \n"
-              << "operating distance \n";
+              << "Operating distance \n";
     std::cin >> dist;
     if (std::cin.fail()) {
       throw std::runtime_error{"Input error: invalid character"};
     }
-    std::cout << "critical distance, must be less than operating distance \n";
+    std::cout << "Critical distance, must be less than operating distance \n";
     std::cin >> cr_dist;
     if (std::cin.fail()) {
       throw std::runtime_error{"Input error: invalid character"};
     }
-    std::cout << "repulsion parameter, it should be in between (0,1] \n";
+    std::cout << "Repulsion parameter, it should be in between (0,1] \n";
     std::cin >> sep;
     if (std::cin.fail()) {
       throw std::runtime_error{"Input error: invalid character"};
@@ -49,7 +51,7 @@ int main() {
     if (sep <= 0 || sep > 1) {
       throw std::runtime_error{"Separation parameter out of range "};
     }
-    std::cout << "allignement parameter, it should be in between (0,1]  \n";
+    std::cout << "Allignement parameter, it should be in between (0,1]  \n";
     std::cin >> all;
     if (std::cin.fail()) {
       throw std::runtime_error{"Input error: invalid character"};
@@ -57,7 +59,7 @@ int main() {
     if (all <= 0 || all > 1) {
       throw std::runtime_error{"Allignement parameter out of range "};
     }
-    std::cout << "cohesion parameter, it should be in between (0,1] \n";
+    std::cout << "Cohesion parameter, it should be in between (0,1] \n";
     std::cin >> coe;
     if (std::cin.fail()) {
       throw std::runtime_error{"Input error: invalid character"};
@@ -68,7 +70,7 @@ int main() {
 
     if (dist < cr_dist) {
       throw std::runtime_error{
-          "critical distance must be stricly less than operating distance"};
+          "Critical distance must be stricly less than operating distance"};
     }
 
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Boids SFML");
@@ -77,7 +79,7 @@ int main() {
     // Caricamento font
     sf::Font font;
     if (!font.loadFromFile("OpenSans-Regular.ttf")) {
-      throw std::runtime_error{"Errore nel caricamento del font\n"};
+      throw std::runtime_error{"Error loading the font\n"};
     }
 
     sf::Text infoText;
@@ -134,9 +136,9 @@ int main() {
           bd::new_boids(flock, pr, sep, coe, dist, cr_dist, all, WIDTH, HEIGHT,
                         MAX_SPEEDX, MAX_SPEEDY);
       bd::Boid new_pr = bd::newpredator(pr, flock, dist, coe, WIDTH, HEIGHT,
-                                        MAX_SPEEDX, MAX_SPEEDY);
-      sf::Color skyBlue(135, 206, 235);
-      window.clear(skyBlue);
+                                        MAX_SPEEDPX, MAX_SPEEDPY);
+      sf::Color darkSkyBlue(70, 130, 180);
+      window.clear(darkSkyBlue);
 
       // Disegna boids
       for (auto& b : new_b) {

@@ -129,7 +129,7 @@ Coord predatorseparation(const Boid& b, const Boid& pr, double ds, double s) {
     Coord bpos = b.getPosition();
     Coord prpos = pr.getPosition();
 
-    Coord v4 = (bpos - prpos) * (-s);
+    Coord v4 = (bpos - prpos) * (s);
     return v4;
   }
 }

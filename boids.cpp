@@ -169,19 +169,21 @@ std::vector<Boid> new_boids(const std::vector<Boid>& flock, double s, double c,
   return new_boids;
 }
 double meanboiddistance(const std::vector<Boid>& flock, const Boid& b) {
-  std::size_t n = flock.size();
-  double sum_d = std::accumulate(flock.begin(), flock.end(), double{0.},
-                                 [&](double d, Boid h) {
-                                   double dist = calculate_distance(h, b);
-                                   d += dist;
-                                   return d;
+  std::size_t count = 0;
+  double sum_d = std::accumulate(flock.begin(), flock.end(), 0.0,
+                                 [&](double acc, const Boid& h) {
+                                   if (!(h == b)) {
+                                     ++count;
+                                     return acc + calculate_distance(h, b);
+                                   }
+                                   return acc;
                                  });
-  return sum_d / static_cast<double>(n);
+  return count > 0 ? sum_d / static_cast<double>(count) : 0.0;
 }
 double meandistance(const std::vector<Boid>& flock) {
   std::size_t n = flock.size();
   double sum_dist = std::accumulate(flock.begin(), flock.end(), double{0.},
-                                    [&](double d, Boid h) {
+                                    [&](double d,  const Boid& h) {
                                       double mbd = meanboiddistance(flock, h);
                                       d += mbd;
                                       return d;
@@ -195,7 +197,7 @@ double meanboiddistancesquared(const std::vector<Boid>& flock, const Boid& b) {
 double dev_stddistance(const std::vector<Boid>& flock) {
   std::size_t n = flock.size();
   double st_dev = std::accumulate(
-      flock.begin(), flock.end(), double{0.}, [&](double d, Boid h) {
+      flock.begin(), flock.end(), double{0.}, [&](double d,  const Boid& h) {
         double mbds = meanboiddistancesquared(flock, h);
         d += mbds;
         return d;
@@ -206,7 +208,7 @@ double dev_stddistance(const std::vector<Boid>& flock) {
 double meanvelocity(const std::vector<Boid>& flock) {
   std::size_t n = flock.size();
   double vel = std::accumulate(flock.begin(), flock.end(), double{0.},
-                               [](double v, Boid h) {
+                               [](double v, const Boid& h) {
                                  double vel_h = calculate_velocity(h);
                                  v += vel_h;
                                  return v;
@@ -216,7 +218,7 @@ double meanvelocity(const std::vector<Boid>& flock) {
 double dev_stdvelocity(const std::vector<Boid>& flock) {
   std::size_t n = flock.size();
   double st_dev = std::accumulate(flock.begin(), flock.end(), double{0.},
-                                  [&](double v, Boid h) {
+                                  [&](double v, const Boid& h) {
                                     double vel_h = calculate_velocity(h);
                                     v += (vel_h * vel_h);
                                     return v;

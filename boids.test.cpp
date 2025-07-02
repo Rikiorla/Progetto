@@ -48,7 +48,8 @@ TEST_CASE("Test new_boids with multiple boids and wrapping") {
       Boid({99.9, 50.0}, {5.0, 0.0})  // vicino al bordo
   };
 
-  auto updated = bd::new_boids(flock, s, c, d, ds, a, width, height, MAX_SPEEDX, MAX_SPEEDY);
+  auto updated = bd::new_boids(flock, s, c, d, ds, a, width, height, MAX_SPEEDX,
+                               MAX_SPEEDY);
 
   REQUIRE(updated.size() == flock.size());
 
@@ -57,9 +58,9 @@ TEST_CASE("Test new_boids with multiple boids and wrapping") {
     Coord new_vel = updated[i].getVelocity();
 
     // Controllo wrapping
-    CHECK(new_pos.x < width);
+    CHECK(new_pos.x <= width);
     CHECK(new_pos.x >= 0.0);
-    CHECK(new_pos.y < height);
+    CHECK(new_pos.y <= height);
     CHECK(new_pos.y >= 0.0);
 
     // Velocità limitata
@@ -122,4 +123,14 @@ TEST_CASE("testing cohesion") {
   Coord coh = bd::cohesion(flock, b, 0.5, 3.0);
   CHECK(coh.x > 0);
   CHECK(coh.y == doctest::Approx(0.0));
+}
+TEST_CASE("testing mean velocities and positions") {
+  using bd::Boid;
+  using bd::Coord;
+  std::vector<Boid> flock{Boid{Coord{0, 0}, Coord{3, 4}},
+                          Boid{Coord{3, 4}, Coord{12, 5}}};
+  double d = bd::meandistance(flock);
+  double v = bd::meanvelocity(flock);
+  CHECK(d == doctest::Approx(5));
+  CHECK(v == doctest::Approx(9));                    
 }

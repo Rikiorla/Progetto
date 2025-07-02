@@ -4,14 +4,14 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/mnegri/cantiere
-BuildDirectory: /home/mnegri/cantiere/build
+SourceDirectory: /home/simone-napodano/Progetto
+BuildDirectory: /home/simone-napodano/Progetto/build
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: cole
+Site: DESKTOP-5IEMEDL
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Linux-c++
@@ -27,7 +27,7 @@ SubmitInactivityTimeout:
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/mnegri/cantiere"
+ConfigureCommand: "/usr/bin/cmake" "/home/simone-napodano/Progetto"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 

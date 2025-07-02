@@ -1,19 +1,24 @@
-Start testing: Jul 01 20:57 CEST
+Start testing: Jul 02 11:42 CEST
 ----------------------------------------------------------
-Unable to find executable: /home/mnegri/cantiere/build/Debug/boids.t
 1/1 Testing: boids.t
 1/1 Test: boids.t
-Command: ""
-Directory: /home/mnegri/cantiere/build
-"boids.t" start time: 
+Command: "/home/simone-napodano/Progetto/build/boids.t"
+Directory: /home/simone-napodano/Progetto/build
+"boids.t" start time: Jul 02 11:42 CEST
 Output:
 ----------------------------------------------------------
+[doctest] doctest version is "2.4.12"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases:  6 |  6 passed | 0 failed | 0 skipped
+[doctest] assertions: 51 | 51 passed | 0 failed |
+[doctest] Status: SUCCESS!
 <end of output>
-Test time =   0.00 sec
+Test time =   1.19 sec
 ----------------------------------------------------------
 Test Passed.
-"boids.t" end time: Jul 01 20:57 CEST
-"boids.t" time elapsed: 00:00:00
+"boids.t" end time: Jul 02 11:42 CEST
+"boids.t" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-End testing: Jul 01 20:57 CEST
+End testing: Jul 02 11:42 CEST

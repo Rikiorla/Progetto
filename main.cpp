@@ -33,20 +33,35 @@ int main() {
     std::cout << "Thank you, now please insert flight parameters: \n"
               << "operating distance \n";
     std::cin >> dist;
+    if (std::cin.fail()) {
+      throw std::runtime_error{"Input error: invalid character"};
+    }
     std::cout << "critical distance, must be less than operating distance \n";
     std::cin >> cr_dist;
+    if (std::cin.fail()) {
+      throw std::runtime_error{"Input error: invalid character"};
+    }
     std::cout << "repulsion parameter, it should be in between (0,1] \n";
     std::cin >> sep;
+    if (std::cin.fail()) {
+      throw std::runtime_error{"Input error: invalid character"};
+    }
     if (sep <= 0 || sep > 1) {
       throw std::runtime_error{"Separation parameter out of range "};
     }
     std::cout << "allignement parameter, it should be in between (0,1]  \n";
     std::cin >> all;
+    if (std::cin.fail()) {
+      throw std::runtime_error{"Input error: invalid character"};
+    }
     if (all <= 0 || all > 1) {
       throw std::runtime_error{"Allignement parameter out of range "};
     }
     std::cout << "cohesion parameter, it should be in between (0,1] \n";
     std::cin >> coe;
+    if (std::cin.fail()) {
+      throw std::runtime_error{"Input error: invalid character"};
+    }
     if (coe <= 0 || coe > 1) {
       throw std::runtime_error{"Cohesion parameter out of range "};
     }
@@ -140,7 +155,7 @@ int main() {
 
       infoText.setString(ss.str());
 
-      // Disegna testo (dopo i boids)
+      // Disegna testo
       window.draw(infoText);
 
       window.display();
@@ -152,3 +167,4 @@ int main() {
     std::cerr << "Caught exeption: " << e.what() << "\n";
     return EXIT_FAILURE;
   }
+}

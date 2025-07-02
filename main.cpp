@@ -135,7 +135,8 @@ int main() {
                         MAX_SPEEDX, MAX_SPEEDY);
       bd::Boid new_pr = bd::newpredator(pr, flock, dist, coe, WIDTH, HEIGHT,
                                         MAX_SPEEDX, MAX_SPEEDY);
-      window.clear(sf::Color::Black);
+      sf::Color skyBlue(135, 206, 235);
+      window.clear(skyBlue);
 
       // Disegna boids
       for (auto& b : new_b) {

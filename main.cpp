@@ -91,19 +91,14 @@ int main() {
     std::random_device r;
     std::default_random_engine eng{r()};
     std::uniform_real_distribution<double> dist_pos_x{0., 800.};
-    std::uniform_real_distribution<double> dist_pos_y{0., 600.};
-    // std::uniform_real_distribution<double> dist_vel_x{-1000., -500.};
+    std::uniform_real_distribution<double> dist_pos_y{0., 600.};  
     std::uniform_real_distribution<double> dist_vel_x_1{-200., -100.};
     std::uniform_real_distribution<double> dist_vel_x_2{100., 200.};
     std::uniform_real_distribution<double> dist_vel_y_1{-200., -100.};
     std::uniform_real_distribution<double> dist_vel_y_2{100., 200.};
     std::uniform_int_distribution<int> choose_interval(0, 1);
 
-    // for (int i{0}; i != Num_boids; ++i) {
-    // bd::Coord pos{dist_pos_x(eng), dist_pos_y(eng)};
-    // bd::Coord vel{dist_vel_x(eng), dist_vel_y(eng)};
-    // flock.emplace_back(pos, vel);
-    //};
+
 
     for (int i{0}; i != Num_boids; ++i) {
       bd::Coord pos{dist_pos_x(eng), dist_pos_y(eng)};

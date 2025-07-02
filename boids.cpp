@@ -122,7 +122,6 @@ Coord cohesion(const std::vector<Boid>& flock, const Boid& b, double c,
   const Coord v3 = (c_mass - pos_b) * c;
   return v3;
 }
-
 Coord newVelocity(const std::vector<Boid>& flock, const Boid& b, double s,
                   double c, double d, double ds, double a) {
   const Coord vel_b = b.getVelocity();
@@ -168,6 +167,8 @@ std::vector<Boid> new_boids(const std::vector<Boid>& flock, double s, double c,
   }
   return new_boids;
 }
+// è la funzione che aggiorna il flock con tutti i parametri dati dall'user e
+// sistema il comportamento ai bordi
 double meanboiddistance(const std::vector<Boid>& flock, const Boid& b) {
   std::size_t count = 0;
   double sum_d = std::accumulate(flock.begin(), flock.end(), 0.0,
@@ -183,7 +184,7 @@ double meanboiddistance(const std::vector<Boid>& flock, const Boid& b) {
 double meandistance(const std::vector<Boid>& flock) {
   std::size_t n = flock.size();
   double sum_dist = std::accumulate(flock.begin(), flock.end(), double{0.},
-                                    [&](double d,  const Boid& h) {
+                                    [&](double d, const Boid& h) {
                                       double mbd = meanboiddistance(flock, h);
                                       d += mbd;
                                       return d;
@@ -197,7 +198,7 @@ double meanboiddistancesquared(const std::vector<Boid>& flock, const Boid& b) {
 double dev_stddistance(const std::vector<Boid>& flock) {
   std::size_t n = flock.size();
   double st_dev = std::accumulate(
-      flock.begin(), flock.end(), double{0.}, [&](double d,  const Boid& h) {
+      flock.begin(), flock.end(), double{0.}, [&](double d, const Boid& h) {
         double mbds = meanboiddistancesquared(flock, h);
         d += mbds;
         return d;

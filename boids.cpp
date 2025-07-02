@@ -285,6 +285,5 @@ Boid newpredator(const Boid& pr, const std::vector<Boid> flock, double d,
   return new_p;
 }
 
-}  // namespace bd
-   // namespace bd
+} 
 // namespace bd

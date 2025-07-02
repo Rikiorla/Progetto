@@ -27,13 +27,6 @@ class Boid {
   Coord getVelocity() const { return vel_; }
 };
 bool operator==(const Boid& lhs, const Boid& rhs);
-std::vector<Boid> near_boids(const std::vector<Boid>& flock, const Boid& b,
-                             double ds);
-std::vector<Boid> new_boids(const std::vector<Boid>& flock, const Boid& pr,
-                            double s, double c, double d, double ds, double a,
-                            double width, double height, double maxspeedx,
-                            double maxspeedy);
-
 double calculate_distance(const Boid& s, const Boid& p);
 
 Coord separation(const std::vector<Boid>&, const Boid& b, double s, double ds);
@@ -49,6 +42,12 @@ double meanboiddistancesquared(const std::vector<Boid>& flock, const Boid& b);
 double dev_stddistance(const std::vector<Boid>& flock);
 double meanvelocity(const std::vector<Boid>& flock);
 double dev_stdvelocity(const std::vector<Boid>& flock);
+std::vector<Boid> near_boids(const std::vector<Boid>& flock, const Boid& b,
+                             double ds);
+std::vector<Boid> new_boids(const std::vector<Boid>& flock, const Boid& pr,
+                            double s, double c, double d, double ds, double a,
+                            double width, double height, double maxspeedx,
+                            double maxspeedy);
 Coord predatorseparation(const Boid& b, const Boid& pr, double d, double s);
 Coord newpredatorvelocity(const Boid& pr, const std::vector<Boid> flock,
                           double d, double c);
